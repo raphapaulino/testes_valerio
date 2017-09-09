@@ -1,5 +1,7 @@
 <?php
 
+include_once('../dd.php');
+
 /**
  * 1 - Criar uma função que retorne um array com 15 dezenas aleatórias entre 1 e 25. Os números não
  * podem se repetir e devem estar na ordem crescente.
@@ -16,48 +18,72 @@ function randomNumbers()
     return $numbers;
 }
 
+function dezenas()
+{
+    $numbers = [];
+    
+    for ($y=1; $y<=25; $y++) {
+        $formatted_value = sprintf("%02d", $y);
+        array_push($numbers, $formatted_value);
+    }
+
+    return $numbers;
+}
+
+function sorteados()
+{
+    $numbers = [1,4,5,6,9,10,11,12,19,20,21,22,23,24,25];
+    $numeros_formatados = [];
+
+    foreach($numbers as $n) {
+        $formatted_value = sprintf("%02d", $n);
+        array_push($numeros_formatados, $formatted_value);
+    }
+
+    return $numeros_formatados;
+}
+
 function lotofacil()
 {
 
-    $result = randomNumbers();
+    $dezenas = dezenas();
+    $aposta = randomNumbers();
+    $numeros_sorteados = sorteados();
 
-    $tables = 3;
-    $c1 = 0;
-    $c2 = count($result);
-    $c3 = 0;
+    echo '<table border="1">';
 
-    for ($a=1; $a<=$tables; $a++) :
+        echo "<tr>";
 
-        echo '<table border="1">';
+            foreach ($dezenas as $c) {
 
-            for ($i = 0; $i <= 4; $i++):
+                $css1 = "";
 
-                echo "<tr>";
-                for ($f = 0; $f <= 4; $f++):
+                if(in_array($c, $numeros_sorteados)) {
+                    $css1 = "background:#4caf50;color:#fff;";
+                }
 
-                    echo "<td>{$result[$f]}</td>";
+                echo "<td style='{$css1}'>{$c}</td>";
 
-                endfor;
-                echo "</tr>";
+                if($c % 5 == 0) {
+                    echo "</tr><tr>";
+                }
 
-                $c1++;
+            };
 
-            endfor;
+        echo "</tr>";
 
-        echo '</table>';
+    echo '</table>';
 
-        echo '<br>';
+    echo '<br>';
+    
+    echo "
+        <div style='max-width:500px;padding: 5px 15px 5px 15px;background-color:#333;color:#fff'>
+        Aposta: ";
 
-    endfor;
-}
+        foreach($aposta as $a):
+            echo $a . ", ";
+        endforeach;
 
-function linha($semana)
-{
-    echo "<tr>";
-    for ($i = 0; $i <= 4; $i++):
-        if (isset($semana[$i])) {
-            echo "<td>{$semana[$i]}</td>";
-        } 
-    endfor;
-    echo "</tr>";
+    echo "</div>";
+
 }
