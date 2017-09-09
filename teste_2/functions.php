@@ -16,10 +16,6 @@ function randomNumbers()
     return $numbers;
 }
 
-
-
-//dd($result);
-
 function lotofacil()
 {
 
@@ -53,37 +49,7 @@ function lotofacil()
         echo '<br>';
 
     endfor;
-
-    // $dezena = 1;
-
-    // $numeros = array();
-
-    // while ($dezena <= 25) {
-
-    //     array_push($numeros, $dezena);
-
-    //     if (count($numeros) == 5) {
-    //         linha($numeros);
-    //         $numeros = array();
-    //     }
-    //     linha($numeros);
-    //     $dezena++;
-    // }
 }
-
-// function lotofacil()
-// {
-//     $dia = 1;
-//     $semana = array();
-//     while ($dia <= 31) {
-//         array_push($semana, $dia);
-//         if (count($semana) == 7) {
-//             linha($semana);
-//             $semana = array();
-//         }
-//         $dia++;
-//     }
-// }
 
 function linha($semana)
 {
@@ -92,9 +58,6 @@ function linha($semana)
         if (isset($semana[$i])) {
             echo "<td>{$semana[$i]}</td>";
         } 
-        // else {
-            // echo "<td></td>";
-        // }
     endfor;
     echo "</tr>";
 }
